@@ -1,0 +1,53 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+  BUSCAR VISITANTE
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+<i class="fas fa-user-check"> BUSCAR VISITANTE</i>
+{% endblock %}
+
+{% block titlemenu %}
+  BUSCAR
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+     
+      <div class="row">
+       <div class="col-4">
+       </div>
+        <div class="col-3">
+          <div class="card card-primary">
+            <div class="card-header">
+             <h5><i class="fas fa-user-check"></i> Buscar Visitante</h5>
+                </div>
+            <div class="card-body">
+              <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+
+                  {{ form.dni }}
+
+
+                   <button type="submit" class="btn btn-primary mx-2 "><i class="fas fa-search"></i> Buscar</button>
+                </form>
+            </div>
+    
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+
+      
+      {% endblock %}

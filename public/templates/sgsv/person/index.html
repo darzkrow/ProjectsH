@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+  DASHBOARD
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+<i class="fas fa-tachometer-alt"> DASHBOARD</i>  
+{% endblock %}
+
+{% block titlemenu %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+ 
+        <div class="row">
+          <div class="col-lg-3 col-6">
+          
+          <div class="small-box bg-info">
+          <div class="inner">
+          <h3>{{pcount|stringformat:"03d"}}</h3>
+          <p>Personas Registradas</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-user-tag"></i>
+          </div>
+          <a href="{%url 'lperson'%}" class="small-box-footer">VER MAS <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+          </div>
+          
+          <div class="col-lg-3 col-6">
+          
+          <div class="small-box bg-success">
+          <div class="inner">
+          <h3>{{acount|stringformat:"03d"}}</h3>
+          <p>Total de Accesos</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-door-open"></i>
+          </div>
+          <a href="{%url 'laccess'%}" class="small-box-footer">VER MAS <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+          </div>
+          
+         
+          
+          
+          
+      </div>
+    </div>
+  </div>
+{% endblock %}

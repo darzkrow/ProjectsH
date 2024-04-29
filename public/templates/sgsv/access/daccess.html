@@ -1,0 +1,100 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+  DETALLE DEL ACCESO A LA SEDE
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+  DETALLE DEL ACCESO A LA SEDE: {{ access.visitor.Dni }}
+{% endblock %}
+
+{% block titlemenu %}
+  DETTALE ACCESO
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+         <div class="col-sm-3">
+          <div class="card card-primary">
+            <div class="card-body box-profile">
+              <div class="text-center">
+                {% if person.photo %}
+                  <img class="profile-user-img img-fluid img-circle" src="{{ person.photo.url }}" alt="Fotografía" />
+                {% else %}
+                  <p>No hay fotografía disponible.</p>
+                 
+                {% endif %}
+              </div>
+             
+              <h3 class="profile-username text-center">{{ person.get_nac_display }}</h3>
+
+              {% comment %} <p class="text-muted text-center">Software Engineer</p> {% endcomment %}
+
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Cedula:</b> <a class="float-right"> {{ person.dni }}</a>
+                </li>
+              
+                <li class="list-group-item">
+                  <b>Nombre:</b> <a class="float-right">{{ person.first_name|upper }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Apellido:</b> <a class="float-right">{{ person.last_name|upper }}</a>
+                </li>
+              </ul>
+                 
+
+            </div>
+          </div>
+        </div>
+        <div class="col-mb-4">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h5 class="m-0"></h5>
+            </div>
+            <div class="card-body">
+              {% if access %}
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Fecha de Acceso</th>
+                 
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for acc in access %}
+                    <tr>
+                    
+
+                      <th scope="row">{{ forloop.counter }}</th>
+                   
+                
+                      <th scope="row">{{ acc.entry|date:"l, d F Y"|upper}}</th>
+                      <th scope="row">{{ acc.get_departaments_display|upper}}</th>
+                      <th scope="row">{{ acc.hours|date:"h:i A" }}</th>
+                      <th scope="row">{{ acc.hoursEx|date:"h:i A" }}</th>
+                    </tr>
+                  {% empty %}
+                    <tr>
+                      <td colspan="4">No hay accesos registrados para esta persona.</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <p>No se encontró información de accesos para la persona con DNI {{ person.dni }}.</p>
+            {% endif %}
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

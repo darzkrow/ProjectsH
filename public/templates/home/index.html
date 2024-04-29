@@ -1,0 +1,80 @@
+{% extends 'layouts/base.html' %}
+{%load static%}
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+  INICIO
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+INICIO
+{% endblock %}
+
+{% block titlemenu %}
+ Inicio
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4">
+          <div class="card card-widget widget-user">
+            <div class="widget-user-header bg-info">
+                
+              <h3 class="widget-user-username">Franco Glinyer</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+                {% if request.user.profile.avatar %}
+
+                <img  class="img-circle elevation-2"
+                    src="{{ request.user.profile.avatar.url  }}"
+                    alt="Fotografía"/>
+                    {% else %}
+              <img
+                class="img-circle elevation-2"
+                src="{% static 'dist/img/user1-128x128.jpg'%}"
+                alt="User Avatar"
+              />
+              {% endif %}
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                </div>
+    
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                </div>
+    
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+        </div>
+     </div>
+</div>
+  
+
+{% endblock %}

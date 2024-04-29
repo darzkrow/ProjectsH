@@ -1,0 +1,124 @@
+{% load static %}
+
+<aside class="main-sidebar elevation-4 sidebar-dark-primary">
+  <!-- Brand Logo -->
+
+  <a href="/" class="brand-link">
+    <img
+      src="{% static 'dist/img/AdminLTELogo.png' %}"
+      alt=""
+      class="brand-image img-circle elevation-3"
+      style="opacity: 0.8"
+    />
+    <span class="brand-text font-weight-light"><b>SIGAP</b> <sub>LTE</sub> <sup> 1.0</sup></span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        {% if request.user.profile.avatar %}
+        <img
+          class="img-circle elevation-2"
+          src="{{ request.user.profile.avatar.url }}"
+          alt="Fotografía"
+        />
+        {% else %}
+        <img
+          src="{% static 'dist/img/user2-160x160.jpg' %}"
+          class="img-circle elevation-2"
+          alt="User Image"
+        />
+        {% endif %}
+      </div>
+      <div class="info">
+        {% if user.first_name and user.last_name %}
+        <a href="" class="d-block"
+          >{{ user.first_name |upper }} {{ user.last_name |upper }}</a
+        >
+        {% else %}
+        <a href="" class="d-block">{{ user.username |upper }}</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column"  data-widget="treeview" role="menu" data-accordion="false">
+      
+        {% comment %} <li class="nav-item menu-open">
+          <a
+            href="{% url '' %}"
+            class="nav-link {% if request.resolver_match.url_name == '/' %}active{% endif %}"
+          >
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Dashboard
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+        </li>  {% endcomment %}
+
+        <li class="nav-item menu-open">
+          <a href="" class="nav-link">
+            <i class="fas fa-building nav-icon"></i>
+            <p>
+              S. GESTION VISITANTE
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                href="{% url 'index' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+              >
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Panel de Control</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="{% url 'search' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'search' %}active{% endif %}"
+              >
+                <i class="fas fa-user-shield nav-icon"></i>
+
+                <p>Buscar Visitante</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="{% url 'lperson' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'lperson' %}active{% endif %}"
+              >
+                <i class="fas fa-torii-gate nav-icon"></i>
+                <p>Visitantes Registrado</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="{% url 'laccess' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'laccess' %}active{% endif %}"
+              >
+                <i class="fas fa-flag nav-icon"></i>
+                <p>Reporte de Accesos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="{% url 'tperson' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'tperson' %}active{% endif %}"
+              >
+                <i class="nav-icon fas fa-trash"></i>
+                <p>Papelera de Reciclaje</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+</aside>

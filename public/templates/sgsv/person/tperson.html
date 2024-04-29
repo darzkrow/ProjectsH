@@ -1,0 +1,61 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+  PAPELERA DE RECICLAJE
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+<i class="fas fa-recycle"> BANDEJA DE RECICLAJE</i>   
+{% endblock %}
+
+{% block titlemenu %}
+  Papelera de Reciclaje
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h5 class="m-0">Papelera de Reciclaje</h5>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nacionalidad</th>
+                    <th scope="col">Cedula</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for person in person %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <th scope="row">{{ person.get_nac_display }}</th>
+                      <th scope="row">{{ person.dni }}</th>
+                      <td>{{ person.first_name }}</td>
+                      <td>{{ person.last_name }}</td>
+                      <td>
+                          <a class="btn btn-sm btn-success" href="{% url 'PersonDetail' person.pk %}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a class="btn btn-sm btn-danger" href="{%url 'softdelele' person.pk %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+ </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

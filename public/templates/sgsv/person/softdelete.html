@@ -1,0 +1,113 @@
+{% extends 'layouts/base.html' %}
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Confirmar Borrado o Restauración</title>
+  </head>
+  <body>
+    <h1>¿Estás seguro de que quieres {{ action_text }} este visitante?</h1>
+    <p>Nacionalidad: {{ visitor.Nac }}</p>
+    <p>Cédula: {{ visitor.Dni }}</p>
+    <!-- Otros campos del visitante -->
+    <form method="post">
+      {% csrf_token %}
+      {% if not visitor.is_deleted %}
+        <button type="submit" name="delete">Confirmar Borrado</button>
+      {% endif %}
+      {% if visitor.is_deleted %}
+        <button type="submit" name="restore">Restaurar</button>
+      {% endif %}
+    </form>
+  </body>
+</html>
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+Papelera de Reciclaje
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+ <i class="fas fa-recycle"></i>  
+{% endblock %}
+
+{% block titlemenu %}
+Papelera de Reciclaje
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="m-0">Listado de Visitantes</h5>
+            </div>
+            <div class="card-body">
+              <h1>¿Estás seguro de que quieres {{ action_text }} este visitante?</h1>
+              <p>Nacionalidad: {{ person.nac }}</p>
+              <p>Cédula: {{ person.dni }}</p>
+              <!-- Otros campos del visitante -->
+              <form  id="person-form" method="post">
+                {% csrf_token %}
+                {% if not person.is_deleted %}
+                  <button type="submit" name="delete" class="btn btn-md btn-danger" id="delete-btn">Confirmar Borrado</button>
+                {% endif %}
+                {% if person.is_deleted %}
+                  <button type="submit" class="btn btn-md btn-success" name="restore" id="restore-btn">Restaurar</button>
+                {% endif %}
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteBtn = document.querySelector('.delete-btn');
+        const restoreBtn = document.querySelector('.restore-btn');
+
+        deleteBtn.addEventListener('click', function () {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'Esta acción no se puede deshacer',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, borrarlo',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si se confirma, enviar el formulario
+                    document.getElementById('visitor-form').submit();
+                }
+            });
+        });
+
+        restoreBtn.addEventListener('click', function () {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'Esta acción no se puede deshacer',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, restaurarlo',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si se confirma, enviar el formulario
+                    document.getElementById('visitor-form').submit();
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}

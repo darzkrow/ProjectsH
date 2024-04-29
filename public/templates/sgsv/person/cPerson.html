@@ -1,0 +1,144 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+  REGISTRO DE NUEVO VISITANTE
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+<i class="fas fa-user-plus"> REGISTRAR DE NUEVO VISITANTE</i>
+{% endblock %}
+
+{% block titlemenu %}
+  REGISTRO DE NUEVO VISITANTE
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+          <div class="card card-primary">
+            <div class="card-header">
+              <i class="fas fa-user-plus"> Nuevo Registro   </i> 
+                    
+            </div>
+            <div class="card-body">
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                 <div class="form  align-items-center">
+                  <div class="col">
+
+                          {{ form }}
+
+                    <input type="submit" class="btn btn-primary btn-block mt-3 form-control" value="Guardar" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+
+         {% comment %} <div class="col-4">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="m-0">Nuevo Visitante</h5>
+            </div>
+            <div class="card-body">
+               <img id="captured-image" src="" alt="Captured Image">
+             <button id="capture-btn">Tomar Foto</button>
+            </div>
+          </div>
+        </div> {% endcomment %}
+      </div>
+    </div>
+  </div>
+
+
+
+  
+    
+    <script>
+    {% comment %} // JavaScript para manejar la captura de la imagen
+    document.getElementById('capture-btn').addEventListener('click', function() {
+        // Solicitar acceso a la cámara
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                // Mostrar el stream de la cámara en un elemento de video
+                var videoElement = document.createElement('video');
+                videoElement.srcObject = stream;
+                videoElement.autoplay = true;
+                document.body.appendChild(videoElement);
+
+                // Capturar una foto cuando el usuario haga clic en el botón
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+                document.body.appendChild(canvas);
+
+                document.getElementById('capture-btn').addEventListener('click', function() {
+                    canvas.width = videoElement.videoWidth;
+                    canvas.height = videoElement.videoHeight;
+                    context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+                    var imageDataUrl = canvas.toDataURL('image/png');
+                    
+                    // Mostrar la imagen capturada en un elemento de imagen
+                    var capturedImage = document.getElementById('captured-image');
+                    capturedImage.src = imageDataUrl;
+                    
+                    // Detener la reproducción del video y apagar la cámara
+                    stream.getVideoTracks()[0].stop();
+                    videoElement.remove();
+                    canvas.remove();
+                });
+            })
+            .catch(function(error) {
+                console.error('Error al acceder a la cámara:', error);
+            });
+    }); {% endcomment %}
+
+    document.getElementById('capture-btn').addEventListener('click', function() {
+      // Solicitar acceso a la cámara
+      navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function(stream) {
+              // Mostrar el stream de la cámara en un elemento de video
+              var videoElement = document.createElement('video');
+              videoElement.srcObject = stream;
+              videoElement.autoplay = true;
+              document.body.appendChild(videoElement);
+  
+              // Capturar una foto cuando el usuario haga clic en el botón
+              var canvas = document.createElement('canvas');
+              var context = canvas.getContext('2d');
+  
+              document.getElementById('capture-btn').addEventListener('click', function() {
+                  canvas.width = videoElement.videoWidth;
+                  canvas.height = videoElement.videoHeight;
+                  context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+                  var imageDataUrl = canvas.toDataURL('image/png');
+  
+                  // Mostrar la imagen capturada en un elemento de imagen
+                  var capturedImage = document.getElementById('captured-image');
+                  capturedImage.src = imageDataUrl;
+  
+                  // Detener la reproducción del video y apagar la cámara
+                  stream.getVideoTracks()[0].stop();
+                  videoElement.remove();
+                  console.log("Image captured successfully!"); // Optional feedback
+              });
+          })
+          .catch(function(error) {
+              console.error('Error al acceder a la cámara:', error);
+          });
+  });
+    </script>
+
+
+{% endblock %}

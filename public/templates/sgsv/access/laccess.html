@@ -1,0 +1,71 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+  DASHBOARD
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+<i class="fas fa-flag-checkered"> LISTADO DE ACCESOS</i>
+{% endblock %}
+
+{% block titlemenu %}
+Listado de Accesos
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="card card-primary">
+            <div class="card-header">
+             LISTADO DE ACCESOS
+              <a class="btn btn-sm btn-success float-right  fas fa-file-excel" href="{% url 'reportexcel' %}"> Generar Listado</a>
+                   
+            </div>
+            <div class="card-body">
+ <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Cedula</th>
+                    <th scope="col">Nombre y Apellido</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Oficina</th>
+                    <th scope="col">Hora de Entrada</th>
+                    <th scope="col">Hora de Salida</th>
+                    <th scope="col">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for laccess in laccess %}
+                    <tr>
+              <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <th scope="row">{{ laccess.visitor|upper}}</th>
+                      <th scope="row">{{ laccess.visitor.first_name|upper}} {{ laccess.visitor.last_name|upper}}</th>
+                      <th scope="row">{{ laccess.entry|date:"l, d F Y"|upper}}</th>
+                      <th scope="row">{{ laccess.get_departaments_display|upper}}</th>
+                      <th scope="row">{{ laccess.hours|date:"h:i A" }}</th>
+                      <th scope="row">{{ laccess.hoursEx|date:"h:i A" }}</th>
+                      <td>
+                        <a class="btn btn-sm btn-success" href="{% url 'daccess' laccess.id %}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                   
+                      </td>
+                    </tr>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

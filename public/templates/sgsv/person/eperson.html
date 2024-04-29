@@ -1,0 +1,42 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+{{ person.first_name|upper}} {{ person.last_name|upper}}
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+Visitante: {{ person.first_name|upper}} {{ person.last_name|upper}}
+{% endblock %}
+
+{% block titlemenu %}
+  Editar  Visitante
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h2>{{ person.get_nac_display|upper}} - {{ person.dni|upper}}</h2>
+            </div>
+            <div class="card-body">
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form}}
+                                <div class="my-3">
+                <button type="submit" class="btn btn-md btn-primary"> <i class="fas fa-save">  Guardar cambios</i></button>
+                                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

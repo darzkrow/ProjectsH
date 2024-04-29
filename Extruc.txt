@@ -1,0 +1,359 @@
+.
+├── apps
+│   └── sgsv
+│       ├── admin.py
+│       ├── apps.py
+│       ├── forms.py
+│       ├── __init__.py
+│       ├── migrations
+│       │   ├── 0001_initial.py
+│       │   ├── 0002_alter_reventos_table.py
+│       │   ├── 0003_person_accesssede.py
+│       │   ├── __init__.py
+│       │   └── __pycache__
+│       │       ├── 0001_initial.cpython-310.pyc
+│       │       ├── 0002_alter_reventos_table.cpython-310.pyc
+│       │       ├── 0003_person_accesssede.cpython-310.pyc
+│       │       └── __init__.cpython-310.pyc
+│       ├── models.py
+│       ├── __pycache__
+│       │   ├── admin.cpython-310.pyc
+│       │   ├── apps.cpython-310.pyc
+│       │   ├── forms.cpython-310.pyc
+│       │   ├── __init__.cpython-310.pyc
+│       │   ├── models.cpython-310.pyc
+│       │   ├── urls.cpython-310.pyc
+│       │   └── views.cpython-310.pyc
+│       ├── tests.py
+│       ├── urls.py
+│       └── views.py
+├── config
+│   ├── asgi.py
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-310.pyc
+│   │   ├── settings.cpython-310.pyc
+│   │   ├── urls.cpython-310.pyc
+│   │   └── wsgi.cpython-310.pyc
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── db.sqlite3
+├── Extruc.txt
+├── manage.py
+├── public
+│   ├── mediafiles
+│   └── templates
+│       ├── dashboard
+│       ├── home
+│       │   └── index.html
+│       ├── layouts
+│       │   ├── base.html
+│       │   ├── navbar.html
+│       │   └── sidebar.html
+│       └── sgsv
+│           ├── access
+│           │   ├── daccess.html
+│           │   ├── laccess.html
+│           │   └── raccess.html
+│           ├── events
+│           ├── EvSeguridad.html
+│           └── person
+│               ├── cPerson.html
+│               ├── eperson.html
+│               ├── index.html
+│               ├── lperson.html
+│               ├── pdetail.html
+│               ├── search.html
+│               ├── softdelete.html
+│               └── tperson.html
+├── requirements.txt
+├── static
+│   ├── admin
+│   │   ├── css
+│   │   │   ├── autocomplete.css
+│   │   │   ├── base.css
+│   │   │   ├── changelists.css
+│   │   │   ├── dark_mode.css
+│   │   │   ├── dashboard.css
+│   │   │   ├── forms.css
+│   │   │   ├── login.css
+│   │   │   ├── nav_sidebar.css
+│   │   │   ├── responsive.css
+│   │   │   ├── responsive_rtl.css
+│   │   │   ├── rtl.css
+│   │   │   ├── vendor
+│   │   │   │   └── select2
+│   │   │   │       ├── LICENSE-SELECT2.md
+│   │   │   │       ├── select2.css
+│   │   │   │       └── select2.min.css
+│   │   │   └── widgets.css
+│   │   ├── img
+│   │   │   ├── calendar-icons.svg
+│   │   │   ├── gis
+│   │   │   │   ├── move_vertex_off.svg
+│   │   │   │   └── move_vertex_on.svg
+│   │   │   ├── icon-addlink.svg
+│   │   │   ├── icon-alert.svg
+│   │   │   ├── icon-calendar.svg
+│   │   │   ├── icon-changelink.svg
+│   │   │   ├── icon-clock.svg
+│   │   │   ├── icon-deletelink.svg
+│   │   │   ├── icon-hidelink.svg
+│   │   │   ├── icon-no.svg
+│   │   │   ├── icon-unknown-alt.svg
+│   │   │   ├── icon-unknown.svg
+│   │   │   ├── icon-viewlink.svg
+│   │   │   ├── icon-yes.svg
+│   │   │   ├── inline-delete.svg
+│   │   │   ├── LICENSE
+│   │   │   ├── README.txt
+│   │   │   ├── search.svg
+│   │   │   ├── selector-icons.svg
+│   │   │   ├── sorting-icons.svg
+│   │   │   ├── tooltag-add.svg
+│   │   │   └── tooltag-arrowright.svg
+│   │   └── js
+│   │       ├── actions.js
+│   │       ├── admin
+│   │       │   ├── DateTimeShortcuts.js
+│   │       │   └── RelatedObjectLookups.js
+│   │       ├── autocomplete.js
+│   │       ├── calendar.js
+│   │       ├── cancel.js
+│   │       ├── change_form.js
+│   │       ├── collapse.js
+│   │       ├── core.js
+│   │       ├── filters.js
+│   │       ├── inlines.js
+│   │       ├── jquery.init.js
+│   │       ├── nav_sidebar.js
+│   │       ├── popup_response.js
+│   │       ├── prepopulate_init.js
+│   │       ├── prepopulate.js
+│   │       ├── SelectBox.js
+│   │       ├── SelectFilter2.js
+│   │       ├── theme.js
+│   │       ├── urlify.js
+│   │       └── vendor
+│   │           ├── jquery
+│   │           │   ├── jquery.js
+│   │           │   ├── jquery.min.js
+│   │           │   └── LICENSE.txt
+│   │           ├── select2
+│   │           │   ├── i18n
+│   │           │   │   ├── af.js
+│   │           │   │   ├── ar.js
+│   │           │   │   ├── az.js
+│   │           │   │   ├── bg.js
+│   │           │   │   ├── bn.js
+│   │           │   │   ├── bs.js
+│   │           │   │   ├── ca.js
+│   │           │   │   ├── cs.js
+│   │           │   │   ├── da.js
+│   │           │   │   ├── de.js
+│   │           │   │   ├── dsb.js
+│   │           │   │   ├── el.js
+│   │           │   │   ├── en.js
+│   │           │   │   ├── es.js
+│   │           │   │   ├── et.js
+│   │           │   │   ├── eu.js
+│   │           │   │   ├── fa.js
+│   │           │   │   ├── fi.js
+│   │           │   │   ├── fr.js
+│   │           │   │   ├── gl.js
+│   │           │   │   ├── he.js
+│   │           │   │   ├── hi.js
+│   │           │   │   ├── hr.js
+│   │           │   │   ├── hsb.js
+│   │           │   │   ├── hu.js
+│   │           │   │   ├── hy.js
+│   │           │   │   ├── id.js
+│   │           │   │   ├── is.js
+│   │           │   │   ├── it.js
+│   │           │   │   ├── ja.js
+│   │           │   │   ├── ka.js
+│   │           │   │   ├── km.js
+│   │           │   │   ├── ko.js
+│   │           │   │   ├── lt.js
+│   │           │   │   ├── lv.js
+│   │           │   │   ├── mk.js
+│   │           │   │   ├── ms.js
+│   │           │   │   ├── nb.js
+│   │           │   │   ├── ne.js
+│   │           │   │   ├── nl.js
+│   │           │   │   ├── pl.js
+│   │           │   │   ├── ps.js
+│   │           │   │   ├── pt-BR.js
+│   │           │   │   ├── pt.js
+│   │           │   │   ├── ro.js
+│   │           │   │   ├── ru.js
+│   │           │   │   ├── sk.js
+│   │           │   │   ├── sl.js
+│   │           │   │   ├── sq.js
+│   │           │   │   ├── sr-Cyrl.js
+│   │           │   │   ├── sr.js
+│   │           │   │   ├── sv.js
+│   │           │   │   ├── th.js
+│   │           │   │   ├── tk.js
+│   │           │   │   ├── tr.js
+│   │           │   │   ├── uk.js
+│   │           │   │   ├── vi.js
+│   │           │   │   ├── zh-CN.js
+│   │           │   │   └── zh-TW.js
+│   │           │   ├── LICENSE.md
+│   │           │   ├── select2.full.js
+│   │           │   └── select2.full.min.js
+│   │           └── xregexp
+│   │               ├── LICENSE.txt
+│   │               ├── xregexp.js
+│   │               └── xregexp.min.js
+│   ├── dist
+│   │   ├── css
+│   │   │   ├── adminlte.css
+│   │   │   ├── adminlte.css.map
+│   │   │   ├── adminlte.min.css
+│   │   │   ├── adminlte.min.css.map
+│   │   │   └── alt
+│   │   │       ├── adminlte.components.css
+│   │   │       ├── adminlte.components.css.map
+│   │   │       ├── adminlte.components.min.css
+│   │   │       ├── adminlte.components.min.css.map
+│   │   │       ├── adminlte.core.css
+│   │   │       ├── adminlte.core.css.map
+│   │   │       ├── adminlte.core.min.css
+│   │   │       ├── adminlte.core.min.css.map
+│   │   │       ├── adminlte.extra-components.css
+│   │   │       ├── adminlte.extra-components.css.map
+│   │   │       ├── adminlte.extra-components.min.css
+│   │   │       ├── adminlte.extra-components.min.css.map
+│   │   │       ├── adminlte.light.css
+│   │   │       ├── adminlte.light.css.map
+│   │   │       ├── adminlte.light.min.css
+│   │   │       ├── adminlte.light.min.css.map
+│   │   │       ├── adminlte.pages.css
+│   │   │       ├── adminlte.pages.css.map
+│   │   │       ├── adminlte.pages.min.css
+│   │   │       ├── adminlte.pages.min.css.map
+│   │   │       ├── adminlte.plugins.css
+│   │   │       ├── adminlte.plugins.css.map
+│   │   │       ├── adminlte.plugins.min.css
+│   │   │       └── adminlte.plugins.min.css.map
+│   │   ├── img
+│   │   │   ├── AdminLTELogo.png
+│   │   │   ├── avatar2.png
+│   │   │   ├── avatar3.png
+│   │   │   ├── avatar4.png
+│   │   │   ├── avatar5.png
+│   │   │   ├── avatar.png
+│   │   │   ├── boxed-bg.jpg
+│   │   │   ├── boxed-bg.png
+│   │   │   ├── credit
+│   │   │   │   ├── american-express.png
+│   │   │   │   ├── cirrus.png
+│   │   │   │   ├── mastercard.png
+│   │   │   │   ├── paypal2.png
+│   │   │   │   ├── paypal.png
+│   │   │   │   └── visa.png
+│   │   │   ├── default-150x150.png
+│   │   │   ├── default.jpg
+│   │   │   ├── icons.png
+│   │   │   ├── photo1.png
+│   │   │   ├── photo2.png
+│   │   │   ├── photo3.jpg
+│   │   │   ├── photo4.jpg
+│   │   │   ├── prod-1.jpg
+│   │   │   ├── prod-2.jpg
+│   │   │   ├── prod-3.jpg
+│   │   │   ├── prod-4.jpg
+│   │   │   ├── prod-5.jpg
+│   │   │   ├── user1-128x128.jpg
+│   │   │   ├── user2-160x160.jpg
+│   │   │   ├── user3-128x128.jpg
+│   │   │   ├── user4-128x128.jpg
+│   │   │   ├── user5-128x128.jpg
+│   │   │   ├── user6-128x128.jpg
+│   │   │   ├── user7-128x128.jpg
+│   │   │   └── user8-128x128.jpg
+│   │   └── js
+│   │       ├── adminlte.js
+│   │       ├── adminlte.js.map
+│   │       ├── adminlte.min.js
+│   │       ├── adminlte.min.js.map
+│   │       ├── demo.js
+│   │       └── pages
+│   │           ├── dashboard2.js
+│   │           ├── dashboard3.js
+│   │           └── dashboard.js
+│   ├── img
+│   │   └── wallpaper.jpg
+│   ├── js
+│   │   ├── adminlte.js
+│   │   ├── adminlte.js.map
+│   │   ├── adminlte.min.js
+│   │   ├── adminlte.min.js.map
+│   │   ├── demo.js
+│   │   └── pages
+│   │       ├── dashboard2.js
+│   │       ├── dashboard3.js
+│   │       └── dashboard.js
+│   ├── photo
+│   │   └── default.jpg
+│   └── plugins
+│       ├── bootstrap
+│       │   └── js
+│       │       ├── bootstrap.bundle.js
+│       │       ├── bootstrap.bundle.js.map
+│       │       ├── bootstrap.bundle.min.js
+│       │       ├── bootstrap.bundle.min.js.map
+│       │       ├── bootstrap.js
+│       │       ├── bootstrap.js.map
+│       │       ├── bootstrap.min.js
+│       │       └── bootstrap.min.js.map
+│       ├── fontawesome-free
+│       │   ├── css
+│       │   │   ├── all.css
+│       │   │   ├── all.min.css
+│       │   │   ├── brands.css
+│       │   │   ├── brands.min.css
+│       │   │   ├── fontawesome.css
+│       │   │   ├── fontawesome.min.css
+│       │   │   ├── regular.css
+│       │   │   ├── regular.min.css
+│       │   │   ├── solid.css
+│       │   │   ├── solid.min.css
+│       │   │   ├── svg-with-js.css
+│       │   │   ├── svg-with-js.min.css
+│       │   │   ├── v4-shims.css
+│       │   │   └── v4-shims.min.css
+│       │   └── webfonts
+│       │       ├── fa-brands-400.eot
+│       │       ├── fa-brands-400.svg
+│       │       ├── fa-brands-400.ttf
+│       │       ├── fa-brands-400.woff
+│       │       ├── fa-brands-400.woff2
+│       │       ├── fa-regular-400.eot
+│       │       ├── fa-regular-400.svg
+│       │       ├── fa-regular-400.ttf
+│       │       ├── fa-regular-400.woff
+│       │       ├── fa-regular-400.woff2
+│       │       ├── fa-solid-900.eot
+│       │       ├── fa-solid-900.svg
+│       │       ├── fa-solid-900.ttf
+│       │       ├── fa-solid-900.woff
+│       │       └── fa-solid-900.woff2
+│       ├── jquery
+│       │   ├── jquery.js
+│       │   ├── jquery.min.js
+│       │   ├── jquery.min.map
+│       │   ├── jquery.slim.js
+│       │   ├── jquery.slim.min.js
+│       │   └── jquery.slim.min.map
+│       └── sweetalert2
+│           ├── sweetalert2.all.js
+│           ├── sweetalert2.all.min.js
+│           ├── sweetalert2.css
+│           ├── sweetalert2.js
+│           ├── sweetalert2.min.css
+│           └── sweetalert2.min.js
+├── staticfiles

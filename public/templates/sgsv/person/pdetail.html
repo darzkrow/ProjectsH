@@ -1,0 +1,93 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+  DETALLE DEL VISITANTE
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+  DETALLE DEL VISITANTE
+{% endblock %}
+
+{% block titlemenu %}
+  Detalle del Visitante
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body box-profile">
+              <div class="text-center">
+                {% if person.photo %}
+                  <img class="profile-user-img img-fluid img-circle" src="{{ person.photo.url }}" alt="Fotografía" />
+                {% else %}
+                  <p>No hay fotografía disponible.</p>
+                {% endif %}
+              </div>
+
+              <h3 class="profile-username text-center">{{ person.get_Nac_display }}</h3>
+
+              {% comment %} <p class="text-muted text-center">Software Engineer</p> {% endcomment %}
+
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Cedula:</b> <a class="float-right">{{ person.dni }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Nombre:</b> <a class="float-right">{{ person.first_name|upper }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Apellido:</b> <a class="float-right">{{ person.last_name|upper }}</a>
+                </li>
+              </ul>
+
+             <a href="{% url 'eperson' dni=person.dni %}" class="btn btn-primary btn-block"><b>Editar</b></a>
+              <a href="{% url 'raccess' dni=person.dni %}" class="btn btn-warning btn-block"><b>Marcar ACCESO</b></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h5 class="m-0">Lista de Accesos</h5>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora de Entrada</th>
+                    <th scope="col">Hora de Salida</th>
+                    <th scope="col">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for x in paccess %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <th scope="row">{{ x.entry|date:"l, d F Y"|upper}}</th>
+                      <th scope="row">{{ x.hours|date:"h:i A" }}</th>
+                      <th scope="row">{{ x.hoursEx|date:"h:i A" }}</th>
+                      <td>
+                        <a class="btn btn-sm btn-success" href="{%url 'daccess' x.id%}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                       <a class="btn btn-sm btn-info" href=""><i class="fas fa-hourglass-start" aria-hidden="true"></i>
+         
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
