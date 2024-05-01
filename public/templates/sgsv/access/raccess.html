@@ -51,6 +51,7 @@
             </div>
           </div>
         </div>
+        {% load crispy_forms_tags %}
         <div class="col-mb-4">
           <div class="card">
             <div class="card-header">
@@ -60,7 +61,7 @@
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-row align-items-center">
-                  <div class="col-auto">{{ form }}
+                  <div class="col-auto">{{ form | crispy}}
                     <input type="submit" class="btn btn-primary btn-block mt-3 form-control" value="Guardar" />
                   </div>
                 </div>

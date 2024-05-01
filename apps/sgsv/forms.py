@@ -20,11 +20,11 @@ class PersonForms(forms.ModelForm):
         model = Person
         fields = ['nac', 'dni', 'first_name', 'last_name', 'gender']
         widgets = {
-            'nac': forms.Select(attrs={'class': 'form-select form-select-lg mb-3'}),
+            'nac': forms.Select(attrs={'class': 'form-control'}),
             'dni': forms.TextInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'gender': forms.Select(attrs={'class': 'form-select form-select form-select-lg my-3'}),
+            'gender': forms.Select(attrs={'class': 'form-control'}),
             
         }
 
@@ -60,3 +60,4 @@ class AccessForm(forms.ModelForm):
             'obs': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
            
         }
+

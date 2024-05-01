@@ -12,6 +12,7 @@ from .forms import SearchForm, PersonForms, AccessForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def EvSeguridad(request):
     context = {
         'reventos': Reventos.objects.all()
@@ -19,19 +20,19 @@ def EvSeguridad(request):
     return render(request,'sgsv/EvSeguridad.html', context) 
 
 
-
+@login_required
 def infoweb(request):
     content = {
     }
     return render(request,'sgv/dashboard.html',content)
-
+@login_required
 def home(request):
     pcount = Person.objects.filter(is_deleted=0).count
     acount= AccessSEDE.objects.count()
     return render(request,'sgsv/person/index.html', {'pcount':pcount, 'acount':acount})
 
 
-
+@login_required
 def SearchPerson(request):
 
     
@@ -65,7 +66,7 @@ def SearchPerson(request):
 #     person = Person.objects.filter(is_deleted=0)
 #     return render(request, 'sgv/lperson.html', {'person': person, 'form': form})
 
-
+@login_required
 def Cperson(request):
     if request.method == "POST":
         form = PersonForms(request.POST, request.FILES)
@@ -77,19 +78,19 @@ def Cperson(request):
     return render(request, 'sgsv/person/cPerson.html', {'form': form})
 
 
-
+@login_required
 def PersonDetail(request,dni):
     person = get_object_or_404(Person, dni=dni)
     paccess = AccessSEDE.objects.filter(visitor=person).order_by('entry', 'hours')
     return render(request, 'sgsv/person/pdetail.html',{'person': person, 'paccess': paccess})
 
-
+@login_required
 def daccess(request,dni):
     person= get_object_or_404(Person, dni=dni)
     access = AccessSEDE.objects.filter(visitor=person)
     return render(request, 'sgsv/access/daccess.html', {'access': access, 'person': person})
 
-
+@login_required
 def detailaccess(request, access_id):
     try:
         access = AccessSEDE.objects.get(pk=access_id)  # Use get() for single object retrieval
@@ -99,7 +100,7 @@ def detailaccess(request, access_id):
     context = {'access': access}
     return render(request, 'sgsv/access/detailaccess.html', context)
 
-
+@login_required
 def Eperson(request, dni):
     person = get_object_or_404(Person, dni=dni)
     if request.method == 'POST':
@@ -112,7 +113,7 @@ def Eperson(request, dni):
     return render(request, 'sgsv/person/eperson.html', {'form': form, 'person': person})
 
 
-
+@login_required
 def SoftdeletePerson(request, pk):
     person = get_object_or_404(Person, pk=pk)
     action_text = 'Restaurar' if person.is_deleted else 'Eliminar'
@@ -125,23 +126,23 @@ def SoftdeletePerson(request, pk):
         return redirect('lperson')  # Cambia esto a la URL deseada
     return render(request, 'sgsv/person/softdelete.html', {'person': person, 'action_text': action_text})
 
-
+@login_required
 def Tperson(request):
     person = Person.objects.filter(is_deleted=True)
     return render(request, 'sgsv/person/tperson.html', {'person': person})
-
+@login_required
 def lperson(request):
     person = Person.objects.filter(is_deleted=0)
     return render(request,'sgsv/person/lperson.html', {'person':person})
 
-
+@login_required
 def laccess(request):
     laccess = AccessSEDE.objects.all()
 
     return render(request, 'sgsv/access/laccess.html', {'laccess': laccess})
 
 
-
+@login_required
 def Eaccess(request, dni):
     access = get_object_or_404(AccessSEDE, pk=dni)
     if request.method == 'POST':
@@ -154,7 +155,7 @@ def Eaccess(request, dni):
     return render(request, 'sgsv/access/daccess.html', {'form': form})
 
 
-
+@login_required
 def raccess(request, dni):
     person_access = get_object_or_404(Person, dni=dni)
     if request.method == "POST":
@@ -174,7 +175,7 @@ def raccess(request, dni):
     return render(request, 'sgsv/access/raccess.html', {'form': form, 'person_access': person_access})
 
 
-
+@login_required
 def reportexcel(request):
     accesses = AccessSEDE.objects.all().order_by('entry')
 
