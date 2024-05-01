@@ -28,16 +28,17 @@
               <i class="fas fa-user-plus"> Nuevo Registro   </i> 
                     
             </div>
+            {% load crispy_forms_tags %}
             <div class="card-body">
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                 <div class="form  align-items-center">
-                  <div class="col">
-
-                          {{ form }}
-
+                <div class="form">
+                  <div class="col-auto">
+            
+                    {{ form | crispy}}
                     <input type="submit" class="btn btn-primary btn-block mt-3 form-control" value="Guardar" />
                   </div>
+                
                 </div>
               </form>
             </div>
