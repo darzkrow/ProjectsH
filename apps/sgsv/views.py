@@ -20,11 +20,7 @@ def EvSeguridad(request):
     return render(request,'sgsv/EvSeguridad.html', context) 
 
 
-@login_required
-def infoweb(request):
-    content = {
-    }
-    return render(request,'sgv/dashboard.html',content)
+
 @login_required
 def home(request):
     pcount = Person.objects.filter(is_deleted=0).count
