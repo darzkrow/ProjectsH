@@ -1,31 +1,53 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Reventos
+
 
 from django.utils import timezone
 
-from .models import Person, AccessSEDE
+from .models import Person, AccessSEDE, Reventos
 from django.http import HttpResponse
 from openpyxl import Workbook
 from datetime import date
 
-from .forms import SearchForm, PersonForms, AccessForm
+from .forms import SearchForm, PersonForms, AccessForm, EventForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+@login_required
+def home(request):
+    pcount = Person.objects.filter(is_deleted=0).count
+    acount= AccessSEDE.objects.count()
+    ecount= Reventos.objects.count()
+    return render(request,'sgsv/person/index.html', {'pcount':pcount, 'acount':acount, 'ecount':ecount})
 
 @login_required
 def EvSeguridad(request):
     context = {
         'reventos': Reventos.objects.all()
     }
-    return render(request,'sgsv/EvSeguridad.html', context) 
+    return render(request,'sgsv/ebook/index.html', context) 
 
 
+def Edetail(request, pk):
+    try:
+        EventD = Reventos.objects.get(pk=pk)
+    except Reventos.DoesNotExist:
+        return HttpResponse("Event not found")
+    context = {'EventD': EventD}
+    return render(request, 'sgsv/ebook/edetail.html', context)
+        
 
-@login_required
-def home(request):
-    pcount = Person.objects.filter(is_deleted=0).count
-    acount= AccessSEDE.objects.count()
-    return render(request,'sgsv/person/index.html', {'pcount':pcount, 'acount':acount})
+def Cevent(request):
+   if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            Event = form.save(commit=False)
+            Event.save()
+            return redirect('Eventos-SEG')
+   else:
+        form = EventForm()
+   return render(request, 'sgsv/ebook/cevent.html', {'form': form})
+    
+
 
 
 @login_required
@@ -47,20 +69,6 @@ def SearchPerson(request):
    
     return render(request, 'sgsv/person/search.html', { 'form': form})
 
-# def SearchPerson(request):
-#     if request.method == 'POST':
-#         form = SearchForm(request.POST)
-#         if form.is_valid():
-#             dni = form.cleaned_data['dni']
-#             try:
-#                 person = Person.objects.get(dni=dni)
-#                 return redirect('PersonDetail', person)
-#             except Person.DoesNotExist:
-#                 return redirect('cperson')
-#     else:
-#         form = SearchForm()
-#     person = Person.objects.filter(is_deleted=0)
-#     return render(request, 'sgv/lperson.html', {'person': person, 'form': form})
 
 @login_required
 def Cperson(request):

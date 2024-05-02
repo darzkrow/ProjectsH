@@ -2,10 +2,15 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('events/', views.EvSeguridad, name='Eventos-SEG'),
-
-
+        # URLS BASE DEL DASHBOARD
     path('dashboard/', views.home, name='index'),
+
+    #URLS DE LOS EVENTOS
+    path('events/', views.EvSeguridad, name='Eventos-SEG'),
+    path('events/create/', views.Cevent),
+    path('events/<int:pk>/view', views.Edetail, name='Edetail-SEG'),
+
+    
     ## URLS DE PERSON
     path('search/', views.SearchPerson, name='search'),
     path('person/list/',views.lperson,name='lperson'),

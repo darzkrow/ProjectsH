@@ -1,0 +1,71 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+Libro de Novedades
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+<i class="fas fa-book"> Libro de Novedades</i>
+{% endblock %}
+
+{% block titlemenu %}
+Libro de Novedades
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="card card-primary">
+            <div class="card-header">
+    
+              <a class="btn btn-md btn-success float-right  fas fa-file" href=""> Exportar Listado</a>
+                   
+            </div>
+            <div class="card-body">
+ <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Evento</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Ubicación</th>
+                    <th scope="col">Descripcíon</th>
+                    <th scope="col">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for event in reventos %}
+                    <tr>
+              <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <th scope="row">{{ event.nEvent|upper}}</th>
+                     
+                     
+                      <th scope="row">{{ event.nDate|date:"l, d F Y"|upper}}</th>
+                   
+                      <th scope="row">{{ event.nLocation|upper}}</th>
+                      <th scope="row">{{ event.nDescription|upper}}</th>
+                      <td>
+
+                        <a class="btn btn-sm btn-success" href="{%url 'Edetail-SEG' pk=event.id%}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        {% comment %} <a class="btn btn-sm btn-success" href="{% url 'daccess' laccess.id %}"><i class="fa fa-eye" aria-hidden="true"></i></a> {% endcomment %}
+                      </td>
+                    </tr>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

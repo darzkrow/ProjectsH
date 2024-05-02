@@ -1,6 +1,17 @@
 from django import forms
 from django.core.validators import RegexValidator
-from .models import Person, AccessSEDE
+from .models import Person, AccessSEDE, Reventos
+
+
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Reventos
+        fields = ['nEvent','nDate','nTime','nLocation','nDescription']
+        widgets = {
+            'nDate': forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
+            'nTime': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+          }
 
 
 class SearchForm(forms.Form):

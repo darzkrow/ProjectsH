@@ -78,6 +78,17 @@
                 <p>Panel de Control</p>
               </a>
             </li>
+
+            <li class="nav-item">
+              <a
+                href="{% url 'Eventos-SEG' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'Eventos-SEG' %}active{% endif %}"
+              >
+                <i class="fas fa-book nav-icon"></i>
+
+                <p>Libro de Novedades</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a
                 href="{% url 'search' %}"

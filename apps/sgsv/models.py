@@ -4,26 +4,6 @@ from django.utils import timezone
 import os
 
 
-class Reventos(models.Model):
-
-    nEvent = models.CharField('Nombre Del Evento',max_length=100)
-    nDate = models.DateField('Fecha')
-    nTime = models.TimeField('Hora')
-    nLocation = models.CharField('Ubicación',max_length=100)
-    nDescription = models.TextField('Descripción del Evento',max_length=255)
-    nImagen =  models.ImageField('Imagen',upload_to='eventos',null=True,blank=True)
-
-
-    class Meta:
-        verbose_name = 'Eventos de Seguridad'
-        verbose_name_plural = 'Evento de Seguridad'
-        db_table = 'events'
-
-    def __str__(self):
-        return  self.nDate.strftime('%d/%m/%Y')  + " - " + self.nTime.strftime('%I:%M %p')+ " " + self.nEvent 
-    
-
-
 class ModeloBase(models.Model):
 
     created_at = models.DateTimeField('Fecha de Creacion', auto_now_add=True)
@@ -46,6 +26,28 @@ class ModeloBase(models.Model):
         self.deleted_at = None
         self.deleted_by = None
         self.save()
+
+
+
+class Reventos(ModeloBase):
+
+    nEvent = models.CharField('Nombre Del Evento',max_length=100)
+    nDate = models.DateField('Fecha')
+    nTime = models.TimeField('Hora')
+    nLocation = models.CharField('Ubicación',max_length=100)
+    nDescription = models.TextField('Descripción del Evento',max_length=255)
+    nImagen =  models.ImageField('Imagen',upload_to='eventos',null=True,blank=True)
+
+
+    class Meta:
+        verbose_name = 'Eventos de Seguridad'
+        verbose_name_plural = 'Evento de Seguridad'
+        db_table = 'events'
+
+    def __str__(self):
+        return  self.nDate.strftime('%d/%m/%Y')  + " - " + self.nTime.strftime('%I:%M %p')+ " " + self.nEvent 
+    
+
 
 
 def visitor_photo_upload_path(instance, filename):
