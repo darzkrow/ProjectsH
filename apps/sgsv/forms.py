@@ -11,6 +11,7 @@ class EventForm(forms.ModelForm):
         widgets = {
             'nDate': forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
             'nTime': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+            'nDescriptions':forms.Textarea(attrs={'style': 'height: 80px;'})
           }
 
 
@@ -19,7 +20,7 @@ class SearchForm(forms.Form):
     dni = forms.CharField(label='Buscar por Numero de Cedula:', max_length=10)
     fields = ['dni']
     widgets = {
-        'dni': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Name'}),
+        'dni': forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''}),
     }
 
 

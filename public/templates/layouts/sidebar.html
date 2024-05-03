@@ -78,17 +78,6 @@
                 <p>Panel de Control</p>
               </a>
             </li>
-
-            <li class="nav-item">
-              <a
-                href="{% url 'Eventos-SEG' %}"
-                class="nav-link {% if request.resolver_match.url_name == 'Eventos-SEG' %}active{% endif %}"
-              >
-                <i class="fas fa-book nav-icon"></i>
-
-                <p>Libro de Novedades</p>
-              </a>
-            </li>
             <li class="nav-item">
               <a
                 href="{% url 'search' %}"
@@ -101,14 +90,25 @@
             </li>
             <li class="nav-item">
               <a
+                href="{% url 'Eventos-SEG' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'Eventos-SEG' %}active{% endif %}"
+              >
+                <i class="fas fa-book nav-icon"></i>
+
+                <p>Libro de Novedades</p>
+              </a>
+            </li>
+          
+            <!-- <li class="nav-item">
+              <a
                 href="{% url 'lperson' %}"
                 class="nav-link {% if request.resolver_match.url_name == 'lperson' %}active{% endif %}"
               >
                 <i class="fas fa-torii-gate nav-icon"></i>
                 <p>Visitantes Registrado</p>
               </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a
                 href="{% url 'laccess' %}"
                 class="nav-link {% if request.resolver_match.url_name == 'laccess' %}active{% endif %}"
@@ -116,8 +116,8 @@
                 <i class="fas fa-flag nav-icon"></i>
                 <p>Reporte de Accesos</p>
               </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a
                 href="{% url 'tperson' %}"
                 class="nav-link {% if request.resolver_match.url_name == 'tperson' %}active{% endif %}"
@@ -125,7 +125,7 @@
                 <i class="nav-icon fas fa-trash"></i>
                 <p>Papelera de Reciclaje</p>
               </a>
-            </li>
+            </li> -->
           </ul>
         </li>
 

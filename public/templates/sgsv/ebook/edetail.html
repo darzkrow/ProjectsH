@@ -16,19 +16,54 @@ Detalles del Evento
 {% endblock %}
 
 {% block content %}
+
+
   <div class="content">
     <div class="container-fluid">
       <div class="row">
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body box-profile">
+              <div class="text-center">
+                
+              </div>
+
+              <h3 class="profile-username text-center"></h3>
+
+              {% comment %} <p class="text-muted text-center">Software Engineer</p> {% endcomment %}
+
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Titulo:</b> <a class="float-right">{{ EventD.nEvent|upper}}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Codigo:</b> <a class="float-right">{{ EventD.id|stringformat:"06d"}}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Fecha de la Novedad:</b> <a class="float-right">{{ EventD.nDate|date:"l, d F Y"|upper}}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Ubicacion:</b> <a class="float-right">{{ EventD.nLocation|upper}}</a>
+                </li>
+              </ul>
+
+           
+
+           
+            </div>
+          </div>
+        </div>
+
         <div class="col">
           <div class="card card-primary">
             <div class="card-header">
-    
-
-                   
+              <h5 class="m-0">Detalla de la Novedad</h5>
             </div>
             <div class="card-body">
- 
+     
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" disabled>{{ EventD.nDescription|upper}}</textarea>
 
+      
             </div>
           </div>
         </div>

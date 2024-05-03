@@ -36,10 +36,11 @@ class Reventos(ModeloBase):
     nTime = models.TimeField('Hora')
     nLocation = models.CharField('Ubicación',max_length=100)
     nDescription = models.TextField('Descripción del Evento',max_length=255)
-    nImagen =  models.ImageField('Imagen',upload_to='eventos',null=True,blank=True)
+    nImagen =  models.ImageField('Imagen',upload_to='eventos/',null=True,blank=True)
 
 
     class Meta:
+        permissions = (("Can_view", "Puede Verlo"),)
         verbose_name = 'Eventos de Seguridad'
         verbose_name_plural = 'Evento de Seguridad'
         db_table = 'events'

@@ -1,0 +1,104 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+  DETALLE DEL ACCESO A LA SEDE
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+  DETALLE DEL ACCESO A LA SEDE: {{ access.visitor.Dni }}
+{% endblock %}
+
+{% block titlemenu %}
+  DETTALE ACCESO
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+         <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body box-profile">
+              <div class="text-center">
+    
+                {% if access.visitor.photo %}
+                <img class="profile-user-img img-fluid img-circle" src="{{ access.visitor.photo.url }}" alt="Fotografía" />
+              {% else %}
+                <p>No hay fotografía disponible.</p>
+               
+              {% endif %}
+              </div>
+             
+              <h3 class="profile-username text-center">{{ access.visitor.get_nac_display }}</h3>
+
+              {% comment %} <p class="text-muted text-center">Software Engineer</p> {% endcomment %}
+
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Cedula:</b> <a class="float-right"> {{ access.visitor.dni }}</a>
+                </li>
+              
+                <li class="list-group-item">
+                  <b>Nombre:</b> <a class="float-right">{{access.visitor.first_name|upper }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Apellido:</b> <a class="float-right">{{access.visitor.last_name|upper }}</a>
+                </li>
+              </ul>
+              <a class="btn  btn-success btn-block" href="{%url 'PersonDetail' dni=access.visitor.dni %}">
+                <i class="fa fa-eye" aria-hidden="true"></i> REGRESAR</a>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="m-0">
+             Detalla del Acceso del Dia: {{ access.entry |date:"l, d F Y"|upper}}
+              </h5>
+            </div>
+            <div class="card-body">
+       
+       
+                        <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="fecha" class="form-label">Fecha de Entrada: </label>
+                      <input type="text"  class="form-control" disabled id="fecha"value="{{ access.entry |date:"l, d F Y"|upper}}">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="horaEnt" class="form-label">Hora de Entrada:</label>
+                      <input type="text" class="form-control" disabled id="horaEnt" value="{{ access.hours|date:"h:i A"}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="horaEnt" class="form-label">Hora de Salida:</label>
+                        <input type="text" class="form-control" disabled id="horaEnt" value="{{ access.hoursEx |date:"h:i A"}}">
+                      </div>
+
+                    <div class="col-12">                       
+                      <label for="oficina" class="form-label">Oficina a Visitar</label>
+                      <input type="text" class="form-control" id="oficina" disabled value="{{ access.departaments }}">
+                    </div>
+                    <div class="col-12">
+                      <label for="observacion" class="form-label">Observacion</label>
+                      <textarea class="form-control" disabled id="observacion" style="height: 100px">
+                        {{ access.obs}}
+                      </textarea>
+               
+                    </div>
+                
+                </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

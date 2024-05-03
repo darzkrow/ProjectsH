@@ -7,7 +7,7 @@ urlpatterns = [
 
     #URLS DE LOS EVENTOS
     path('events/', views.EvSeguridad, name='Eventos-SEG'),
-    path('events/create/', views.Cevent),
+    path('events/create/', views.Cevent, name='Event-Create'),
     path('events/<int:pk>/view', views.Edetail, name='Edetail-SEG'),
 
     
