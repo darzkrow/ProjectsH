@@ -7,6 +7,7 @@ from .models import Person, AccessSEDE, Reventos
 from django.http import HttpResponse
 from openpyxl import Workbook
 from datetime import date
+from django.core.paginator import Paginator
 
 from .forms import SearchForm, PersonForms, AccessForm, EventForm
 from django.contrib.auth.decorators import login_required
@@ -21,10 +22,12 @@ def home(request):
 
 @login_required
 def EvSeguridad(request):
-    context = {
-        'reventos': Reventos.objects.all()
-    }
-    return render(request,'sgsv/ebook/index.html', context) 
+ 
+    reventos = Reventos.objects.all()
+    paginator = Paginator(reventos, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'sgsv/ebook/index.html', {'page_obj': page_obj})
 
 
 def Edetail(request, pk):
@@ -86,7 +89,10 @@ def Cperson(request):
 def PersonDetail(request,dni):
     person = get_object_or_404(Person, dni=dni)
     paccess = AccessSEDE.objects.filter(visitor=person).order_by('entry', 'hours')
-    return render(request, 'sgsv/person/pdetail.html',{'person': person, 'paccess': paccess})
+    paginator = Paginator(paccess, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'sgsv/person/pdetail.html',{'person': person,  'page_obj': page_obj})
 
 @login_required
 def daccess(request,dni):
@@ -116,7 +122,6 @@ def Eperson(request, dni):
         form = PersonForms(instance=person)
     return render(request, 'sgsv/person/eperson.html', {'form': form, 'person': person})
 
-
 @login_required
 def SoftdeletePerson(request, pk):
     person = get_object_or_404(Person, pk=pk)
@@ -134,16 +139,22 @@ def SoftdeletePerson(request, pk):
 def Tperson(request):
     person = Person.objects.filter(is_deleted=True)
     return render(request, 'sgsv/person/tperson.html', {'person': person})
+
 @login_required
 def lperson(request):
     person = Person.objects.filter(is_deleted=0)
-    return render(request,'sgsv/person/lperson.html', {'person':person})
+    paginator = Paginator(person, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'sgsv/person/lperson.html', {'page_obj': page_obj})
 
 @login_required
 def laccess(request):
-    laccess = AccessSEDE.objects.all()
-
-    return render(request, 'sgsv/access/laccess.html', {'laccess': laccess})
+    laccess = AccessSEDE.objects.all().order_by('-entry') 
+    paginator = Paginator(laccess, 8)  # paginate by 8
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'sgsv/access/laccess.html', {'page_obj': page_obj})
 
 
 @login_required
@@ -177,6 +188,22 @@ def raccess(request, dni):
     else:
         form = AccessForm()
     return render(request, 'sgsv/access/raccess.html', {'form': form, 'person_access': person_access})
+
+@login_required
+def edit_access(request, pk):
+    access = get_object_or_404(AccessSEDE, pk=pk)
+    if request.method == "POST":
+       # form = AccessForm(request.POST)
+        form = AccessForm(request.POST, instance=access)
+        if form.is_valid():
+            form.save()
+            return redirect('search')
+    else:
+        form = AccessForm(instance=access)
+    return render(request, "sgsv/access/edaccass.html", {"form": form})
+
+
+
 
 
 @login_required

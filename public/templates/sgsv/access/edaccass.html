@@ -1,0 +1,48 @@
+{% extends 'layouts/base.html' %}
+
+{% comment %}TODO LO QUE ESTE EN TITLE APARECERA EN EL TITULO DE LA PAGINA{% endcomment %}
+{% block title %}
+  REGISTRO DE ACCESO A LA SEDE
+{% endblock %}
+
+{% comment %}MUESTRA LA UBICACION ACTUAL DE{% endcomment %}
+
+{% block titlecontent %}
+  REGISTRANDO ACCESO DEL VISITANTE: {{ visitor.Dni }}
+{% endblock %}
+
+{% block titlemenu %}
+  REGISTRAR ACCESO
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+         <div class="col-sm-3">
+          
+        
+        </div>
+        {% load crispy_forms_tags %}
+        <div class="col-mb-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="m-0">Nuevo ACCESO</h5>
+            </div>
+            <div class="card-body">
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-row align-items-center">
+                  <div class="col-auto">{{ form | crispy}}
+                    <input type="submit" class="btn btn-primary btn-block mt-3 form-control" value="Guardar" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -26,7 +26,7 @@ class SearchForm(forms.Form):
 
 class PersonForms(forms.ModelForm):
     dni_validator = RegexValidator(r'^\d{6,10}$', 'Ingrese solo números válidos con un mínimo de 6 dígitos.')
-    name_validator = RegexValidator(r'^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$', 'Ingrese solo letras válidas para el nombre.')
+    name_validator = RegexValidator(r'^[a-zA-ZáéíóúÁñÑÉÍÓÚ\s]+$', 'Ingrese solo letras válidas para el nombre.')
 
     class Meta:
         model = Person
@@ -65,8 +65,8 @@ class AccessForm(forms.ModelForm):
         fields =  ['entry','hours','hoursEx','departaments','obs']
         widgets = {
             'entry': forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
-            'hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'hoursEx': forms.TimeInput(attrs={'type': 'time','class': 'form-control'}),
+            'hours': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'format': '%%I:%%M %%p'}),
+            'hoursEx': forms.TimeInput(attrs={'type': 'time','class': 'form-control', 'format': '%%I:%%M %%p'}),
             'departaments': forms.Select(attrs={'class': 'form-control'}),
            
             'obs': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),

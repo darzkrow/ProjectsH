@@ -28,6 +28,7 @@ urlpatterns = [
     path('access/person/list/', views.laccess, name='laccess'),
     path('daccess/<int:access_id>/', views.detailaccess, name='daccess'),    
     path('raccess/person/<str:dni>/', views.raccess, name='raccess'),
+    path('access/<int:pk>/edit/', views.edit_access, name='edit_access'),
     path('report/access/list', views.reportexcel, name='reportexcel'),
     #path('eaccess/<int:dni>/edit/', views.Eaccess, name='eaccess'),
 

@@ -40,7 +40,7 @@ Libro de Novedades
                   </tr>
                 </thead>
                 <tbody>
-                  {% for event in reventos %}
+                  {% for event in page_obj %}
                     <tr>
               <tr>
                       <th scope="row">{{ forloop.counter }}</th>
@@ -62,7 +62,19 @@ Libro de Novedades
                 </tbody>
               </table>
 
+              {% if page_obj.has_previous %}
 
+              <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+      
+          {% endif %}
+      
+          <span>   Pagina   {{ page_obj.number }} de   {{ page_obj.paginator.num_pages }}</span>
+      
+          {% if page_obj.has_next %}
+      
+              <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+      
+          {% endif %}
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '(4m3-f0z3l^onf)&5_*^fv)=-5qwi$ewp=bsi79wz35^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -133,12 +133,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = 'es-ve'
-
 TIME_ZONE = 'America/Caracas'
-
 USE_I18N = True
-
 USE_TZ = True
+
+
+DATE_INPUT_FORMATS =  ['%d/%m/%Y']
 
 
 # Static files (CSS, JavaScript, Images)
@@ -149,8 +149,8 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static/'),
 ]
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'search'
+LOGOUT_REDIRECT_URL = 'search'
 MEDIA_URL = 'media/'
 MEDIA_ROOT =  '/var/www/html/mediafiles'
 

@@ -19,7 +19,7 @@
   <div class="content">
     <div class="container-fluid">
      
-     
+
         
    <div class="row">
         <div class="col">
@@ -40,7 +40,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for person in person %}
+                  {% for person in page_obj %}
                     <tr>
                       <th scope="row">{{ forloop.counter }}</th>
                       <th scope="row">{{ person.get_nac_display }}</th>
@@ -49,13 +49,26 @@
                       <td>{{ person.last_name }}</td>
                       <td>
                         <a class="btn btn-sm btn-success" href="{% url 'PersonDetail' dni=person.dni %}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        <a class="btn btn-sm btn-danger" href="{%url 'softdelele' person.dni %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <!-- <a class="btn btn-sm btn-danger" href="{%url 'softdelele' person.dni %}"><i class="fa fa-trash" aria-hidden="true"></i></a> -->
 
                       </td>
                     </tr>
                   {% endfor %}
                 </tbody>
               </table>
+              {% if page_obj.has_previous %}
+
+              <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+      
+          {% endif %}
+      
+          <span>   Pagina   {{ page_obj.number }} de   {{ page_obj.paginator.num_pages }}</span>
+      
+          {% if page_obj.has_next %}
+      
+              <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+      
+          {% endif %}
             </div>
           </div>
         </div>
